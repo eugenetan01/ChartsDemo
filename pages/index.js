@@ -6,6 +6,9 @@ import { useState } from "react";
 export default function Home() {
   const [value, setValue] = useState("All");
 
+  let filter = {
+    "shipping-source.country": value,
+  };
   // This is to render all countries in the chart
   let conn_charts =
     "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&maxDataAge=3600&theme=light&autoRefresh=true";
@@ -14,10 +17,9 @@ export default function Home() {
   if (value != "All") {
     console.log(value);
     conn_charts =
-      "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter={'shipping-source.country':%20" +
-      "'" +
-      value +
-      "'}&maxDataAge=3600&theme=light&autoRefresh=true";
+      "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
+      JSON.stringify(filter) +
+      "&maxDataAge=3600&theme=light&autoRefresh=true";
   }
 
   return (
