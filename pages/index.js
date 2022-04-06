@@ -6,12 +6,14 @@ import { useState } from "react";
 export default function Home() {
   const [value, setValue] = useState("All");
 
+  //Specify filter here
   let filter = {
     "shipping-source.country": value,
   };
+
   // This is to render all countries in the chart
   let conn_charts =
-    "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&maxDataAge=3600&theme=light&autoRefresh=true";
+    "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&maxDataAge=100&theme=light&autoRefresh=true";
 
   // This is to render country specific dashboard with the use of filters
   if (value != "All") {
@@ -19,7 +21,7 @@ export default function Home() {
     conn_charts =
       "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
       JSON.stringify(filter) +
-      "&maxDataAge=3600&theme=light&autoRefresh=true";
+      "&maxDataAge=100&theme=light&autoRefresh=true";
   }
 
   return (
