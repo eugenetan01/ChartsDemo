@@ -1,28 +1,19 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Chart from "../components/Chart";
 
 export default function Home() {
-  const [value, setValue] = useState("All");
+  const [value, setValue] = useState("");
 
-  //Specify filter here
-  let filter = {
-    "shipping-source.country": value,
-  };
-
-  // This is to render all countries in the chart
-  let conn_charts =
-    "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&maxDataAge=100&theme=light&autoRefresh=true";
-
-  // This is to render country specific dashboard with the use of filters
-  if (value != "All") {
-    console.log(value);
-    conn_charts =
-      "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
-      JSON.stringify(filter) +
-      "&maxDataAge=100&theme=light&autoRefresh=true";
-  }
+  //Specify your filter here
+  let filter =
+    value == ""
+      ? {}
+      : {
+          "shipping-source.country": value,
+        };
 
   return (
     <div className={styles.container}>
@@ -38,7 +29,13 @@ export default function Home() {
           height="600"
           src="https://charts.mongodb.com/charts-eugene-wbjar/embed/dashboards?id=ed21e9b8-d95c-49dc-a179-699fbf8cc7b5&theme=light&autoRefresh=true&maxDataAge=3600&showTitleAndDesc=true&scalingWidth=scale&scalingHeight=scale"
         ></iframe> */}
-        <iframe width="640" height="480" src={conn_charts}></iframe>
+        <Chart
+          height={"600px"}
+          width={"800px"}
+          //filter={filter}
+          filter={filter}
+          chartId={"624c1cab-b920-4b80-8a3f-716b757c44ba"}
+        />
         <p className={styles.description}>
           <select
             value={value}
@@ -46,7 +43,7 @@ export default function Home() {
               setValue(e.target.value);
             }}
           >
-            <option value="All">All countries</option>
+            <option value="">All countries</option>
             <option value="GB">United Kingdom</option>
             <option value="US">United States</option>
             <option value="SG">Singapore</option>
