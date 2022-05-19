@@ -5,8 +5,6 @@ This is a [MongoDB Charts](https://www.mongodb.com/docs/charts/) project bootstr
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
