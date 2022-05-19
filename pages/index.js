@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>UPS Analytics Dashboard</h1>
+        <h1 className={styles.title}>Deliveries Analytics Dashboard</h1>
         {/* <iframe
           width="1000"
           height="600"
@@ -37,18 +37,20 @@ export default function Home() {
           chartId={"624c1cab-b920-4b80-8a3f-716b757c44ba"}
         />
         <p className={styles.description}>
-          <select
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-          >
-            <option value="">All countries</option>
-            <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
-            <option value="SG">Singapore</option>
-          </select>
+          Choose from the dropdown below to interact with your data
         </p>
+
+        <select
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        >
+          <option value="">All countries</option>
+          <option value="GB">United Kingdom</option>
+          <option value="US">United States</option>
+          <option value="SG">Singapore</option>
+        </select>
       </main>
 
       <footer className={styles.footer}>
