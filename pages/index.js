@@ -17,7 +17,6 @@ export default function Home() {
   // This is to render all countries in the chart
 
   // This is to render country specific dashboard with the use of filters
-
   let conn_charts =
     "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
     JSON.stringify(filter) +
@@ -31,7 +30,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>UPS Analytics Dashboard</h1>
+        <h1 className={styles.title}>Deliveries Analytics Dashboard</h1>
+        <p className={styles.description}>
+          Total number of deliveries per country
+        </p>
         {/* <iframe
           width="1000"
           height="600"
@@ -39,18 +41,19 @@ export default function Home() {
         ></iframe> */}
         <iframe width="640" height="480" src={conn_charts}></iframe>
         <p className={styles.description}>
-          <select
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-          >
-            <option value="All">All countries</option>
-            <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
-            <option value="SG">Singapore</option>
-          </select>
+          Choose from the dropdown below to interact with your data
         </p>
+        <select
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+        >
+          <option value="All">All countries</option>
+          <option value="GB">United Kingdom</option>
+          <option value="US">United States</option>
+          <option value="SG">Singapore</option>
+        </select>
       </main>
 
       <footer className={styles.footer}>
