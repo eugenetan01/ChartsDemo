@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Euclid Circular A, Akzidenz,  Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -13,4 +12,11 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.header {
+  padding: 2% 0% 0% 1%;
+  text-align: center;
+  background: #4DB33D;
+  color: white;
 }

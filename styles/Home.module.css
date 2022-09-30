@@ -1,16 +1,17 @@
-.container {
-  padding: 0 2rem;
-}
+
 
 .main {
   min-height: 70vh;
-  padding: 4rem 0;
+  padding: 2% 0 0% 4%;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+/* Header/Logo Title */
+
 
 .footer {
   display: flex;
@@ -41,8 +42,11 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
+  line-height: 1;
   font-size: 4rem;
+  padding-bottom: 4%;
+  padding-left: 5%;
+  padding-right: 4%;
 }
 
 .title,
@@ -51,10 +55,12 @@
 }
 
 .description {
-
   line-height: 1.5;
-  font-size: 1.5rem;
   margin-top: 2%;
+}
+
+.descriptionNew {
+  line-height: 1.5;
 }
 
 .code {
@@ -105,6 +111,8 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   height: 1em;
   margin-left: 0.5rem;
 }
