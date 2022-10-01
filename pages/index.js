@@ -4,6 +4,8 @@ import styles from "../styles/Home.module.css";
 import { MenuItem, Select } from "@material-ui/core";
 import { useState } from "react";
 import { Grid } from "@material-ui/core";
+import ThemeToggle from "../components/ThemeToggle";
+import Example1 from "../components/navbar";
 
 export default function Home() {
   const [value, setValue] = useState("All");
@@ -16,59 +18,55 @@ export default function Home() {
           "shipping-source.country": value,
         };
 
-  // This is to render all countries in the chart
-
   // This is to render country specific dashboard with the use of filters
   let conn_charts =
     "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
     JSON.stringify(filter) +
     "&maxDataAge=100&theme=light&autoRefresh=true";
 
+  console.log(conn_charts);
   return (
     <div className={styles.container}>
-      <div className="header">
-        <Grid container spacing={2}>
-          <Grid item xs={1}>
-            <a
-              href="https://github.com/eugenetan01/ChartsDemo"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="/mongodb_logo.png"
-                alt="MongoDB logo"
-                width={"35%"}
-                height={"85%"}
-              />
-            </a>
-          </Grid>
-          <Grid item xs={10}>
-            <h1 className={styles.title}>Deliveries Analytics Dashboard</h1>
-          </Grid>
+      <Example1 />
+
+      {/* <Grid container spacing={2}>
+        <Grid item xs={1}>
+          <a
+            href="https://github.com/eugenetan01/ChartsDemo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/mongodb_logo.png"
+              alt="MongoDB logo"
+              width={"35%"}
+              height={"85%"}
+            />
+          </a>
+        </Grid> */}
+      {/* <Grid item xs={10}>
+          <h1 className={styles.title}>Deliveries Analytics Dashboard</h1>
         </Grid>
-      </div>
+      </Grid> */}
 
       <main className={styles.main}>
         {/*         <p className={styles.description}>
           Total number of deliveries per country
         </p> */}
-        <Grid container spacing={2} style={{ paddingLeft: "27%" }}>
+
+        <Grid container spacing={2} style={{ paddingLeft: "38%" }}>
           <Grid
             item
-            xs={4}
             style={{
-              paddingLeft: "20%",
+              paddingLeft: "8%",
               alignSelf: "center",
-              ["@media only screen and (max-width: 1234px)"]: {
-                paddingLeft: "22%",
-              },
             }}
           >
             <p className={styles.description}>
               <b>Select Country:</b>
             </p>
           </Grid>
-          <Grid item xs={8}>
+          <Grid item>
             <Select
               value={value}
               onChange={(e) => {
@@ -81,6 +79,9 @@ export default function Home() {
               <MenuItem value="SG">Singapore</MenuItem>
             </Select>
           </Grid>
+          {/* <Grid item xs={1}>
+            <ThemeToggle />
+          </Grid> */}
         </Grid>
 
         <br />
@@ -95,7 +96,6 @@ export default function Home() {
           Choose from the dropdown below to interact with your data
         </p> */}
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://www.mongodb.com"

@@ -20,3 +20,38 @@ a {
   background: #4DB33D;
   color: white;
 }
+
+body,
+body[data-theme="light"] {
+  --color-text-primary: #27201a;
+  --color-bg-primary: #fff;
+  --color-bg-toggle: #1e90ff;
+}
+
+body[data-theme="dark"] {
+  --color-text-primary: #e3e3e3;
+  --color-text-secondary: #fffff;
+  --color-bg-primary: #15232d;
+  --color-bg-toggle: #a9a9a9;
+}
+
+body {
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: sans-serif;
+  transition: background 0.25s ease-in-out;
+}
+
+h1 {
+  color: var(--color-text-secondary);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+}
