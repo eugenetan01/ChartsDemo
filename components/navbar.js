@@ -1,83 +1,158 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import green from "@material-ui/core/colors/green";
+import * as React from "react";
+import { styled, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import CssBaseline from "@mui/material/CssBaseline";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Typography from "@mui/material/Typography";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import DataObjectIcon from "@mui/icons-material/DataObject";
+import CodeIcon from "@mui/icons-material/Code";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import ThemeToggle from "../components/ThemeToggle";
-// react.school/material-ui
+import { Grid } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
+const drawerWidth = 240;
+
+const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+  ({ theme, open }) => ({
     flexGrow: 1,
-  },
-  customColor: {
-    // or hex code, this is normal CSS background-color
-    backgroundColor: green[500],
-  },
-  customHeight: {
-    minHeight: 200,
-  },
-  offset: theme.mixins.toolbar,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-${drawerWidth}px`,
+    ...(open && {
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  })
+);
+
+const AppBar = styled(MuiAppBar, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  transition: theme.transitions.create(["margin", "width"], {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  ...(open && {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: `${drawerWidth}px`,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
 }));
 
-export default function ButtonAppBar() {
-  const classes = useStyles();
-  const [example, setExample] = useState("customColor");
-  const isCustomColor = example === "customColor";
-  const isCustomHeight = example === "customHeight";
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+export default function PersistentDrawerLeft() {
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <React.Fragment>
-      <AppBar
-        color={isCustomColor || isCustomHeight ? "primary" : example}
-        className={`${isCustomColor && classes.customColor} ${
-          isCustomHeight && classes.customHeight
-        }`}
-      >
+    <Box sx={{ display: "flex" }}>
+      <CssBaseline />
+      <AppBar position="flex" open={open}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Deliveries Analytics Dashboard
-          </Typography>
-          {/*  <IconButton color="inherit" onClick={() => setExample("default")}>
-            1
-          </IconButton>
-          <IconButton color="inherit" onClick={() => setExample("primary")}>
-            2
-          </IconButton>
-          <IconButton color="inherit" onClick={() => setExample("secondary")}>
-            3
-          </IconButton>
-          <IconButton color="inherit" onClick={() => setExample("transparent")}>
-            4
-          </IconButton>
-          <IconButton color="inherit" onClick={() => setExample("customColor")}>
-            5
-          </IconButton>
-          <IconButton
-            color="inherit"
-            onClick={() => setExample("customHeight")}
-          >
-            6
-          </IconButton> */}
-          <Typography>
-            <ThemeToggle />
-          </Typography>
+          <Grid container spacing={1} style={{ alignItems: "center" }}>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                onClick={handleDrawerOpen}
+                edge="start"
+                sx={{ mr: 2, ...(open && { display: "none" }) }}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Grid>
+            <Grid item xs={11}>
+              <Typography variant="h6" component={"div"}>
+                Deliveries Analyics Dashboard
+              </Typography>
+            </Grid>
+          </Grid>
+          <Grid container justifyContent="flex-end">
+            <Typography>
+              <ThemeToggle />
+            </Typography>
+          </Grid>
         </Toolbar>
       </AppBar>
-      <Toolbar />
-    </React.Fragment>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            boxSizing: "border-box",
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === "ltr" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
+        <List>
+          {["SDK Embed", "iFrame Embed", "Github"].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  {index % 3 === 2 ? (
+                    <GitHubIcon />
+                  ) : index % 2 === 0 ? (
+                    <DataObjectIcon />
+                  ) : (
+                    <CodeIcon />
+                  )}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+    </Box>
   );
 }
