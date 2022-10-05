@@ -1,8 +1,7 @@
-import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { MenuItem, Select } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Grid } from "@material-ui/core";
 import Navbar from "../components/navbar";
 
@@ -45,12 +44,17 @@ export default function Home() {
           </Grid>
           <Grid item>
             <Select
+              style={
+                darkTheme === "dark"
+                  ? { background: "#15232d", color: "#fff" }
+                  : { background: "#fff", color: "#000" }
+              }
               value={value}
               onChange={(e) => {
                 setValue(e.target.value);
               }}
             >
-              <MenuItem value="All">All Countries</MenuItem>
+              <MenuItem value="All">{"All Countries"}</MenuItem>
               <MenuItem value="GB">United Kingdom</MenuItem>
               <MenuItem value="US">United States of America</MenuItem>
               <MenuItem value="SG">Singapore</MenuItem>

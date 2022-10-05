@@ -5,13 +5,11 @@ const Chart = ({ filter, chartId, height, width, darkTheme }) => {
   const sdk = new ChartsEmbedSDK({
     baseUrl: "https://charts.mongodb.com/charts-eugene-wbjar",
   });
-  useEffect(() => {
-    console.log(localStorage.getItem("darkTheme"));
-  });
 
   const chartDiv = useRef(null);
   const [rendered, setRendered] = useState(false);
-  const [chart] = useState(
+
+  let [chart, setChart] = useState(
     sdk.createChart({
       chartId: chartId,
       height: height,
@@ -19,6 +17,24 @@ const Chart = ({ filter, chartId, height, width, darkTheme }) => {
       theme: darkTheme,
     })
   );
+
+  useEffect(() => {
+    setChart(
+      sdk.createChart({
+        chartId: chartId,
+        height: height,
+        width: width,
+        theme: darkTheme,
+      })
+    );
+  }, [darkTheme]);
+
+  useEffect(() => {
+    chart
+      .render(chartDiv.current)
+      .then(() => setRendered(true))
+      .catch((err) => console.log("Error during Charts rendering.", err));
+  }, [darkTheme]);
   useEffect(() => {
     chart
       .render(chartDiv.current)

@@ -12,6 +12,9 @@
 
 /* Header/Logo Title */
 
+.p {
+  color: white;
+}
 
 .footer {
   position: fixed;
@@ -126,4 +129,3 @@
     flex-direction: column;
   }
 }
-

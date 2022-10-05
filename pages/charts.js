@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Navbar />
+      <Navbar onChange={(value) => setDarkTheme(value)} />
 
       <main className={styles.main}>
         <Grid container spacing={2} style={{ paddingLeft: "38%" }}>
@@ -35,7 +35,7 @@ export default function Home() {
             }}
           >
             <p className={styles.description}>
-              <b>Select Country:</b>
+              <b>Select Country: </b>
             </p>
           </Grid>
           <Grid item>
@@ -45,15 +45,14 @@ export default function Home() {
                 setValue(e.target.value);
               }}
             >
-              <MenuItem value="All">All Countries</MenuItem>
+              <MenuItem value="All">
+                <p>All Countries</p>
+              </MenuItem>
               <MenuItem value="GB">United Kingdom</MenuItem>
               <MenuItem value="US">United States of America</MenuItem>
               <MenuItem value="SG">Singapore</MenuItem>
             </Select>
           </Grid>
-          {/* <Grid item xs={1}>
-            <ThemeToggle />
-          </Grid> */}
         </Grid>
 
         <br />
@@ -63,6 +62,7 @@ export default function Home() {
           width={"800px"}
           filter={filter}
           chartId={"624c1cab-b920-4b80-8a3f-716b757c44ba"}
+          darkTheme={darkTheme}
         />
       </main>
       <footer className={styles.footer}>
@@ -74,7 +74,11 @@ export default function Home() {
           <span className={styles.logo}>
             Powered by &nbsp;
             <Image
-              src="/Mongodb-footer.png"
+              src={
+                darkTheme === "light"
+                  ? "/Mongodb-footer.png"
+                  : "/mongoDB-dark-theme.png"
+              }
               alt="MongoDB logo"
               width={"100%"}
               height={"30%"}
