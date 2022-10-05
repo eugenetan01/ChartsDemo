@@ -5,6 +5,7 @@ import { MenuItem, Select } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import Navbar from "../components/navbar";
+import Chart from "../components/ChartsSDK";
 
 export default function Home() {
   let [darkTheme, setDarkTheme] = useState("light");
@@ -18,18 +19,12 @@ export default function Home() {
           "shipping-source.country": value,
         };
 
-  let conn_charts =
-    "https://charts.mongodb.com/charts-eugene-wbjar/embed/charts?id=624c1cab-b920-4b80-8a3f-716b757c44ba&filter=" +
-    JSON.stringify(filter) +
-    "&maxDataAge=100&theme=" +
-    darkTheme +
-    "&autoRefresh=true";
-
   // This is to render country specific dashboard with the use of filters
 
   return (
     <div className={styles.container}>
-      <Navbar onChange={(value) => setDarkTheme(value)} />
+      <Navbar />
+
       <main className={styles.main}>
         <Grid container spacing={2} style={{ paddingLeft: "38%" }}>
           <Grid
@@ -40,7 +35,7 @@ export default function Home() {
             }}
           >
             <p className={styles.description}>
-              <b>Select Country {darkTheme}: </b>
+              <b>Select Country:</b>
             </p>
           </Grid>
           <Grid item>
@@ -56,16 +51,19 @@ export default function Home() {
               <MenuItem value="SG">Singapore</MenuItem>
             </Select>
           </Grid>
+          {/* <Grid item xs={1}>
+            <ThemeToggle />
+          </Grid> */}
         </Grid>
 
         <br />
 
-        <iframe
-          width="50%"
-          height="600"
-          frameBorder={"none"}
-          src={conn_charts}
-        ></iframe>
+        <Chart
+          height={"600px"}
+          width={"800px"}
+          filter={filter}
+          chartId={"624c1cab-b920-4b80-8a3f-716b757c44ba"}
+        />
       </main>
       <footer className={styles.footer}>
         <a

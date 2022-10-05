@@ -69,10 +69,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-export default function PersistentDrawerLeft() {
+export default function PersistentDrawerLeft(props) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const items = ["/charts", "/", "https://github.com/eugenetan01/ChartsDemo"];
+  const [darkTheme, setDarkTheme] = React.useState("light");
+  const inactiveTheme = darkTheme === "light" ? "dark" : "light";
 
+  const toggle = (value) => {
+    setDarkTheme(value);
+    props.onChange(inactiveTheme);
+  };
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -84,7 +91,7 @@ export default function PersistentDrawerLeft() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="flex" open={open}>
+      <AppBar position="relative" open={open}>
         <Toolbar>
           <Grid container spacing={1} style={{ alignItems: "center" }}>
             <Grid item>
@@ -100,13 +107,13 @@ export default function PersistentDrawerLeft() {
             </Grid>
             <Grid item xs={11}>
               <Typography variant="h6" component={"div"}>
-                Deliveries Analyics Dashboard
+                Deliveries Analyics Dashboard {inactiveTheme}
               </Typography>
             </Grid>
           </Grid>
           <Grid container justifyContent="flex-end">
             <Typography>
-              <ThemeToggle />
+              <ThemeToggle onChange={(value) => toggle(value)} />
             </Typography>
           </Grid>
         </Toolbar>
@@ -136,7 +143,13 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           {["SDK Embed", "iFrame Embed", "Github"].map((text, index) => (
-            <ListItem key={text} disablePadding>
+            <ListItem
+              button
+              component="a"
+              key={text}
+              href={items[index]}
+              disablePadding
+            >
               <ListItemButton>
                 <ListItemIcon>
                   {index % 3 === 2 ? (

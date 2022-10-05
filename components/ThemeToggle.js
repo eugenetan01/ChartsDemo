@@ -1,4 +1,3 @@
-// components/ThemeToggle.js
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 
@@ -37,18 +36,22 @@ const ToggleThumb = styled.span`
       : "none"};
 `;
 
-const ThemeToggle = (mode) => {
+const ThemeToggle = (props) => {
   // ...
 
   const [activeTheme, setActiveTheme] = useState("light");
   const inactiveTheme = activeTheme === "light" ? "dark" : "light";
 
+  const onSubmit = (inactiveTheme) => {
+    setActiveTheme(inactiveTheme);
+    props.onChange(inactiveTheme);
+  };
   useEffect(() => {
     document.body.dataset.theme = activeTheme;
   }, [activeTheme]);
 
   return (
-    <ToggleButton type="button" onClick={() => setActiveTheme(inactiveTheme)}>
+    <ToggleButton type="button" onClick={() => onSubmit(inactiveTheme)}>
       <ToggleThumb activeTheme={activeTheme} />
       <span>🌙</span>
       <span>☀️</span>
