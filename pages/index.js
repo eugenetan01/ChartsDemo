@@ -40,7 +40,7 @@ export default function Home() {
             }}
           >
             <p className={styles.description}>
-              <b>Select Country {darkTheme}: </b>
+              <b>Select Country: </b>
             </p>
           </Grid>
           <Grid item>
@@ -76,7 +76,11 @@ export default function Home() {
           <span className={styles.logo}>
             Powered by &nbsp;
             <Image
-              src="/Mongodb-footer.png"
+              src={
+                darkTheme === "light"
+                  ? "/Mongodb-footer.png"
+                  : "/mongoDB-dark-theme.png"
+              }
               alt="MongoDB logo"
               width={"100%"}
               height={"30%"}

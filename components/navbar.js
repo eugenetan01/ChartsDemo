@@ -107,7 +107,7 @@ export default function PersistentDrawerLeft(props) {
             </Grid>
             <Grid item xs={11}>
               <Typography variant="h6" component={"div"}>
-                Deliveries Analyics Dashboard {inactiveTheme}
+                Deliveries Analyics Dashboard
               </Typography>
             </Grid>
           </Grid>
