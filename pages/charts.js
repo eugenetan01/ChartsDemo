@@ -40,6 +40,11 @@ export default function Home() {
           </Grid>
           <Grid item>
             <Select
+              style={
+                darkTheme === "dark"
+                  ? { background: "#15232d", color: "#fff" }
+                  : { background: "#fff", color: "#000" }
+              }
               value={value}
               onChange={(e) => {
                 setValue(e.target.value);
