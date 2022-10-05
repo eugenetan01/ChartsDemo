@@ -91,7 +91,11 @@ export default function PersistentDrawerLeft(props) {
   return (
     <Box sx={{ display: "inline" }}>
       <CssBaseline />
-      <AppBar position="relative" open={open}>
+      <AppBar
+        position="relative"
+        open={open}
+        style={{ background: "#1976d2", color: "#fff" }}
+      >
         <Toolbar>
           <Grid container spacing={1} style={{ alignItems: "center" }}>
             <Grid item>
