@@ -82,7 +82,7 @@ export default function Home() {
               src={
                 darkTheme === "light"
                   ? "/Mongodb-footer.png"
-                  : "/mongoDB-dark-theme.png"
+                  : "/MongoDB-dark-theme.png"
               }
               alt="MongoDB logo"
               width={"100%"}
