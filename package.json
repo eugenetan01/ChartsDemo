@@ -17,6 +17,7 @@
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.7",
     "@mui/styled-engine-sc": "^5.10.6",
+    "@netlify/plugin-nextjs": "^4.27.0",
     "autoprefixer": "^10.4.12",
     "bootstrap": "^5.2.1",
     "next": "12.1.4",
