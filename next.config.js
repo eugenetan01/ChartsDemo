@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    unoptimized: true,
+    loader: "imgix",
+    path: "/",
   },
 };
 
