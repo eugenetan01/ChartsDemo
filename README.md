@@ -19,3 +19,10 @@ To see how to embed a chart / dashboard with an iFrame, see the main branch. Oth
 Check out the iFrame embedded chart in the Production deployment environment
 
 Check out the Charts SDK embedded chart Preview deployment environment
+
+docker buildx build . --platform linux/amd64 -t chartsdemo:latest
+docker tag chartsdemo gcr.io/chartsdemo-365909/chartsdemo:latest  
+docker push gcr.io/chartsdemo-365909/chartsdemo:latest
+gcloud beta run deploy --image gcr.io/chartsdemo-365909/chartsdemo:latest --project chartsdemo-365909 --platform managed --region asia-northeast1 --allow-unauthenticated
+
+Open [here](https://chartsdemo-cxss7zdlva-an.a.run.app/) to see cloud hosted version
